@@ -1,0 +1,46 @@
+{
+  "name": "mfb-nodejs-boilerplate",
+  "version": "1.0.0",
+  "description": "A light-weight boilerplate for express with some basic build and watch scripts",
+  "main": "server.js",
+  "scripts": {
+    "clean": "rimraf dist/* && mkdirp 'dist/css' 'dist/js' 'dist/img'",
+    "build:sass": "node-sass-chokidar --source-map true build/scss/*.scss -o dist/css",
+    "postbuild:sass": "postcss dist/css/*.css --use autoprefixer -d dist/css",
+    "build:js": "browserify src/js/main.js | uglifyjs > dist/js/main.js",
+    "build:img": "copyfiles src/img dist/img",
+    "build": "npm-run-all -s clean -p build:*",
+    "watch:sass": "chokidar 'src/scss/**/*' -c 'npm run build:sass'",
+    "watch:js": "chokidar 'src/js/**/*' -c 'npm run build:js'",
+    "watch:img": "chokidar 'src/img/**/*' -c 'npm run build:img'",
+    "watch": "npm-run-all -p watch:*",
+    "dev-run": "nodemon --ignore dist/ --ignore src/ --ignore views server.js",
+    "dev": "npm run build && npm-run-all -p watch dev-run",
+    "start": "node server.js",
+    "test": "node test"
+  },
+  "author": "Mike Fitzbaxter",
+  "license": "ISC",
+  "dependencies": {
+    "compression": "^1.7.3",
+    "express": "^4.16.4",
+    "nunjucks": "^3.1.4"
+  },
+  "devDependencies": {
+    "autoprefixer": "^9.3.1",
+    "browserify": "^16.2.3",
+    "chokidar-cli": "^1.2.1",
+    "copyfiles": "^2.1.0",
+    "mkdirp": "^0.5.1",
+    "node-sass-chokidar": "^1.3.4",
+    "nodemon": "^1.18.6",
+    "npm-run-all": "^4.1.5",
+    "postcss-cli": "^6.0.1",
+    "rimraf": "^2.6.2",
+    "uglify-js": "^3.4.9"
+  },
+  "comments": {
+    "sass-build-guide": "https://gi/thub.com/hellobrian/sass-recipes/tree/master/node-sass",
+    "npm-build-tool": "https://www.keithcirkel.co.uk/how-to-use-npm-as-a-build-tool/"
+  }
+}

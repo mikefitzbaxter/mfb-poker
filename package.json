@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "clean": "rimraf dist/* && mkdirp 'dist/css' 'dist/js' 'dist/img'",
-    "build:sass": "node-sass-chokidar --source-map true build/scss/*.scss -o dist/css",
+    "build:sass": "node-sass-chokidar --source-map true src/scss/*.scss -o dist/css",
     "postbuild:sass": "postcss dist/css/*.css --use autoprefixer -d dist/css",
     "build:js": "browserify src/js/main.js | uglifyjs > dist/js/main.js",
     "build:img": "copyfiles src/img dist/img",

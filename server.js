@@ -20,9 +20,8 @@ app.use(express.static('dist'))
 // gzip compression on everything
 app.use(compression())
 // errorHandling
-function errorHandler(err, req, res, next) {
+const errorHandler = function (err, req, res, next) {
 	console.log(err)
-
 }
 
 /* ###### ROUTING ###### */

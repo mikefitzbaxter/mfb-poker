@@ -19,10 +19,7 @@ nunjucks.configure('templates', {
 app.use(express.static('dist'))
 // gzip compression on everything
 app.use(compression())
-// errorHandling
-const errorHandler = function (err, req, res, next) {
-	console.log(err)
-}
+
 
 /* ###### ROUTING ###### */
 // Home
@@ -36,7 +33,14 @@ app.get( '*', function(req, res, next) {
 	res.status(404).render('pages/404.html')
 })
 
-app.use(errorHandler())
+// errorHandling
+app.use(function (err, req, res, next) {
+	if (err.message === '404') {
+		console.error(`Error: 404, URL: ${req.url}`)
+	} else {
+		console.error(`Error: ${err.message}`)
+	}
+})
 
 /* ###### SERVER START ###### */
 // start server and listen on port

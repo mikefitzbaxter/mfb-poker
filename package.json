@@ -18,7 +18,7 @@
     "dev-run": "nodemon --ignore dist/ --ignore src/ --ignore views server.js",
     "dev": "npm run build && npm-run-all -p watch dev-run",
     "start": "node server.js",
-    "test": "node test"
+    "test": "mocha './test/**/*.js'"
   },
   "author": "Mike Fitzbaxter",
   "license": "ISC",
@@ -30,9 +30,11 @@
   "devDependencies": {
     "autoprefixer": "^9.3.1",
     "browserify": "^16.2.3",
+    "chai": "^4.2.0",
     "chokidar-cli": "^1.2.1",
     "copyfiles": "^2.1.0",
     "mkdirp": "^0.5.1",
+    "mocha": "^5.2.0",
     "node-sass-chokidar": "^1.3.4",
     "nodemon": "^1.18.6",
     "npm-run-all": "^4.1.5",

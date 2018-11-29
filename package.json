@@ -15,9 +15,9 @@
     "watch:js": "chokidar 'src/js/**/*' -c 'npm run build:js'",
     "watch:img": "chokidar 'src/img/**/*' -c 'npm run build:img'",
     "watch": "npm-run-all -p watch:*",
-    "dev-run": "nodemon --ignore dist/ --ignore src/ --ignore views server.js",
+    "dev-run": "nodemon --ignore dist/ --ignore src/ --ignore views ./bin/www",
     "dev": "npm run build && npm-run-all -p watch dev-run",
-    "start": "node server.js",
+    "start": "node ./bin/www",
     "test": "mocha './test/**/*.js'"
   },
   "author": "Mike Fitzbaxter",
@@ -28,6 +28,8 @@
     "cookie-parser": "^1.4.3",
     "debug": "^4.1.0",
     "express": "^4.16.4",
+    "helmet": "^3.15.0",
+    "morgan": "^1.9.1",
     "nunjucks": "^3.1.4"
   },
   "devDependencies": {

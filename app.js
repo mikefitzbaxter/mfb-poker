@@ -1,3 +1,11 @@
+const config = {
+	app: {
+		name: 'mfb-nodejs-boilerplate',
+		title: 'MFB NodeJS Boilerplate'
+	}
+}
+
+/* ###### INCLUDES ###### */
 const express      = require('express')
 const nunjucks     = require('nunjucks')
 const helmet       = require('helmet')
@@ -11,11 +19,12 @@ const app = express()
 /* ###### TEMPLATE CONFIG ###### */
 // configure nunjucks template engine
 // http://mozilla.github.io/nunjucks
-nunjucks.configure('views', {
+const env = nunjucks.configure('views', {
 	autoescape: true,
 	express: app,
 	watch: true
 })
+env.addGlobal('app', { title: config.app.title })
 
 /* ###### MIDDLEWARE ###### */
 app.use(helmet()) // protect app by setting various http headers
@@ -59,4 +68,7 @@ app.use(function(err, req, res, next) {
 });
 
 // export app to ./bin/www
-module.exports = app
+module.exports = {
+	'app': app,
+	'config': config
+}

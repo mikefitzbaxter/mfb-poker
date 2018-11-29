@@ -33,13 +33,19 @@ app.get( '*', function(req, res, next) {
 	res.status(404).render('pages/404.html')
 })
 
-// errorHandling
+/* ###### ERROR HANDLERS ###### */
+// 404 Handler
 app.use(function (err, req, res, next) {
 	if (err.message === '404') {
 		console.error(`Error: 404, URL: ${req.url}`)
 	} else {
-		console.error(`Error: ${err.message}`)
+		next()
 	}
+})
+
+// Default
+app.use(function (err, req, res, next) {
+	console.error(`Error: ${err.message}`)
 })
 
 /* ###### SERVER START ###### */

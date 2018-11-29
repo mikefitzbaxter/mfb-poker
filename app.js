@@ -29,10 +29,13 @@ app.use(express.static('dist')) // static files middleware
 
 
 /* ###### ROUTING ###### */
-// Home
-app.get('/', function(req, res, next) {
-	res.render('pages/index.njk')
-})
+const index = require('./routes/index')
+const api = require('./routes/api')
+
+// site url sections
+app.use('/', index)
+app.use('/api', api)
+
 
 // Catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -46,14 +49,11 @@ app.use(function(err, req, res, next) {
 	// Set locals, only providing error in development
 	res.locals.message = err.message
 	res.locals.error = req.app.get('env') === 'development' ? err : {}
+	res.status(err.status || 500)
 
 	if (err.status === 404) {
-		// Render the 404 page
-		res.status = err.status
 		res.render('pages/404.html')
 	} else {
-		// Render the error page
-		res.status(err.status || 500)
 		res.render('error')
 	}
 });

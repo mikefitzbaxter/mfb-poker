@@ -12,7 +12,19 @@
 	{% block app %}{% endblock app %}
 
 	<!-- JS fies -->
-	{% include '../partials/js.njk' %}
+	<!-- Base JS files -->
+	<script src="js/main.js"></script>
 
+	<!-- App JS Files -->
+	{% block appJS %}
+	{% endblock appJS %}
+
+	<!-- Page JS files -->
+	{% block pageJS %}
+	{% endblock pageJS %}
+
+	<!-- Analytics -->
+	{% include '../partials/analytics.njk' %}
+	
 </body>
 </html>

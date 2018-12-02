@@ -71,5 +71,5 @@ app.use(function(err, req, res, next) {
 // export app to ./bin/www
 module.exports = {
 	'app': app,
-	'config': appConfig
+	'appConfig': appConfig
 }

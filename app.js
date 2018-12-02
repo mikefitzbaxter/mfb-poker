@@ -1,7 +1,7 @@
 const appConfig = {
 	name: 'mfb-nodejs-boilerplate',
 	appTitle: 'MFB NodeJS Boilerplate',
-	googleAnalytics: 'UA-XXXXX-Y'
+	ga: ''
 }
 
 /* ###### INCLUDES ###### */
@@ -29,6 +29,7 @@ const env = nunjucks.configure('views', {
 env.addGlobal('app', { 
 	title: app.locals.config.appTitle,
 	ga: app.locals.config.googleAnalytics,
+	live: app.get('env'),
 })
 
 /* ###### MIDDLEWARE ###### */

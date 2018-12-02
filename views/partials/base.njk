@@ -11,20 +11,21 @@
 	<!-- App -->
 	{% block app %}{% endblock app %}
 
-	<!-- JS fies -->
+	<!-- Javascript -->
 	<!-- Base JS files -->
 	<script src="js/main.js"></script>
 
 	<!-- App JS Files -->
-	{% block appJS %}
-	{% endblock appJS %}
+	{% block appJS %}{% endblock appJS %}
 
 	<!-- Page JS files -->
-	{% block pageJS %}
-	{% endblock pageJS %}
+	{% block pageJS %}{% endblock pageJS %}
 
 	<!-- Analytics -->
-	{% include '../partials/analytics.njk' %}
+	{{app.live}}
+	{% if app.live === 'production' && app.ga !== '' %}
+		{% include '../partials/analytics.njk' %}
+	{% endif %}
 	
 </body>
 </html>

@@ -4,29 +4,32 @@
   "description": "A light-weight boilerplate for express with some basic build and watch scripts",
   "main": "server.js",
   "scripts": {
-    "clean": "rimraf dist/* && mkdirp 'dist/css' 'dist/js' 'dist/img'",
+    "clean": "rimraf ./dist && mkdirp 'dist' 'dist/css' 'dist/js' 'dist/img' 'dist/font'",
     
     "js:main": "browserify src/js/main.js | uglifyjs > dist/js/main.js",
-    "js:app":  "browserify src/js/app.js | uglifyjs > dist/js/app.js",
+    "js:app" : "browserify src/js/app.js | uglifyjs > dist/js/app.js",
     
     "build:sass": "node-sass-chokidar --source-map true src/scss/*.scss -o dist/css",
-      "postbuild:sass": "postcss dist/css/*.css --use autoprefixer -d dist/css",
-    "build:js": "npm-run-all -p js:*",
-    "build:img": "copyfiles -u 1 src/img/* dist",
-    "build:src": "copyfiles -u 1 src/* dist",
+        "postbuild:sass": "postcss dist/css/*.css --use autoprefixer -d dist/css",
+    "build:js"  : "npm-run-all -p js:*",
+    "build:img" : "copyfiles -u 1 src/img/* dist",
+    "build:font": "copyfiles -u 1 src/font/* dist",
+    "build:src" : "copyfiles -u 1 src/* dist",
     
     "watch:sass": "chokidar 'src/scss/**/*' -c 'npm run build:sass'",
-    "watch:js": "chokidar 'src/js/**/*' -c 'npm run build:js'",
-    "watch:img": "chokidar 'src/img/**/*' -c 'npm run build:img'",
+    "watch:js"  : "chokidar 'src/js/**/*' -c 'npm run build:js'",
+    "watch:img" : "chokidar 'src/img/**/*' -c 'npm run build:img'",
+    "watch:font": "chokidar 'src/font/**/*' -c 'npm run build:font'",
+    "watch:src" : "chokidar 'src/*' -c 'npm run build:src'",
     
     "build": "npm-run-all -s clean -p build:*",
     "watch": "npm-run-all -p watch:*",
     
     "dev-run": "nodemon --ignore dist/ --ignore src/ --ignore views ./bin/www",
     
-    "dev": "npm run build && npm-run-all -p watch dev-run",
+    "dev"  : "npm run build && npm-run-all -p watch dev-run",
     "start": "node ./bin/www",
-    "test": "mocha './test/**/*.js'"
+    "test" : "mocha './test/**/*.js'"
   },
   "author": "Mike Fitzbaxter",
   "license": "ISC",

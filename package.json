@@ -5,18 +5,25 @@
   "main": "server.js",
   "scripts": {
     "clean": "rimraf dist/* && mkdirp 'dist/css' 'dist/js' 'dist/img'",
+    
+    "js:main": "browserify src/js/main.js | uglifyjs > dist/js/main.js",
+    "js:app":  "browserify src/js/app.js | uglify > dist/js/app.js",
+    
     "build:sass": "node-sass-chokidar --source-map true src/scss/*.scss -o dist/css",
-    "postbuild:sass": "postcss dist/css/*.css --use autoprefixer -d dist/css",
-    "build:js-main": "browserify src/js/main.js | uglifyjs > dist/js/main.js",
-    "build:js-app":  "browserify src/js/app.js | uglify > dist/js/app.js",
+      "postbuild:sass": "postcss dist/css/*.css --use autoprefixer -d dist/css",
+    "build:js": "npm-run-all -p js:*",
     "build:img": "copyfiles -u 1 src/img/* dist",
     "build:src": "copyfiles -u 1 src/* dist",
-    "build": "npm-run-all -s clean -p build:*",
+    
     "watch:sass": "chokidar 'src/scss/**/*' -c 'npm run build:sass'",
     "watch:js": "chokidar 'src/js/**/*' -c 'npm run build:js'",
     "watch:img": "chokidar 'src/img/**/*' -c 'npm run build:img'",
+    
+    "build": "npm-run-all -s clean -p build:*",
     "watch": "npm-run-all -p watch:*",
+    
     "dev-run": "nodemon --ignore dist/ --ignore src/ --ignore views ./bin/www",
+    
     "dev": "npm run build && npm-run-all -p watch dev-run",
     "start": "node ./bin/www",
     "test": "mocha './test/**/*.js'"

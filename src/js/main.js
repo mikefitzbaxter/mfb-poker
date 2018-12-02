@@ -1,3 +1,3 @@
 // main.js
 
-console.log("running");
+console.log('loaded: main.js')

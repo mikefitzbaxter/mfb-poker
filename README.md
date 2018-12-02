@@ -1,5 +1,11 @@
 #mfb-nodejs-boilerplate
 
+###Clone
+Clone this repo to your own project
+
+###Configure
+inside `app.js` configure your own app settings (name, title, GA-Account)
+
 ###Setup
 `$ npm install`
 

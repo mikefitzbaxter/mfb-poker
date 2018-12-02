@@ -23,7 +23,7 @@
 
 	<!-- Analytics -->
 	{{app.live}}
-	{% if app.live === 'production' && app.ga !== '' %}
+	{% if app.live === 'production' and app.ga !== '' %}
 		{% include '../partials/analytics.njk' %}
 	{% endif %}
 	

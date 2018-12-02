@@ -14,3 +14,7 @@ yarn-error.log
 # Docker
 Dockerfile
 docker-compose.yml
+
+#sublime-text
+*.sublime-project
+*.sublime-workspace

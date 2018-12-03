@@ -40,7 +40,7 @@ app.use(bodyParser.urlencoded({ extended: false })) //urlencode parsed body
 app.use(cookieParser()); // parse cookies
 app.use(compression()) // gzip compression all routes
 
-app.use(express.static('dist')) // static files middleware
+app.use(express.static(__dirname + '/dist')) // static files middleware
 
 
 /* ###### ROUTING ###### */

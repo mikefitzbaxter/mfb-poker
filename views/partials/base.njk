@@ -2,6 +2,14 @@
 <html>
 <head>
 	{% include '../partials/head.njk' %}
+
+	<!-- App CSS files -->
+	{% block appCSS %}
+		<link rel="stylesheet" type="text/css" href="/css/app.css" />
+	{% endblock appCSS %}
+
+	<!-- Page CSS files -->
+	{% block pageCSS %}{% endblock pageCSS %}
 </head>
 <body>
 	<!--[if lte IE 9]>

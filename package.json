@@ -13,7 +13,7 @@
     "js:app"  : "browserify src/js/app.js | uglifyjs > dist/js/app.js",
     "js:other": "copyfiles -u 1 src/js/* dist",
         
-    "build:sass": "node-sass-chokidar --source-map true src/scss/*.scss -o dist/css",
+    "build:sass": "node-sass src/scss -o dist/css",
         "postbuild:sass": "postcss dist/css/*.css --use autoprefixer -d dist/css",
     "build:js"  : "npm-run-all -p js:*",
     "build:img" : "copyfiles -u 1 src/img/* dist",
@@ -57,7 +57,7 @@
     "copyfiles": "^2.1.0",
     "mkdirp": "^0.5.1",
     "mocha": "^5.2.0",
-    "node-sass-chokidar": "^1.3.4",
+    "node-sass": "^4.10.0",
     "nodemon": "^1.18.6",
     "npm-run-all": "^4.1.5",
     "postcss-cli": "^6.0.1",

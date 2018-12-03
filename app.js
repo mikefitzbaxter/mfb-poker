@@ -28,8 +28,8 @@ const env = nunjucks.configure('views', {
 })
 env.addGlobal('app', { 
 	title: app.locals.config.appTitle,
-	ga: app.locals.config.googleAnalytics,
-	live: app.get('env'),
+	ga: app.locals.config.ga,
+	env: app.get('env'),
 })
 
 /* ###### MIDDLEWARE ###### */

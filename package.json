@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "A light-weight boilerplate for express with some basic build and watch scripts",
   "main": "server.js",
+  "engines": {
+    "node": "10.13.0"
+  },
   "scripts": {
     "clean": "rimraf ./dist && mkdirp 'dist' 'dist/css' 'dist/js' 'dist/img' 'dist/font'",
     
@@ -31,7 +34,8 @@
     "dev"  : "npm run build && npm-run-all -p watch dev-run",
         "predev": "npm config set scripts-prepend-node-path true",
     "start": "node ./bin/www",
-    "test" : "mocha './test/**/*.js'"
+    "test" : "mocha './test/**/*.js'",
+    "postinstall": "npm run build",
   },
   "author": "Mike Fitzbaxter",
   "license": "ISC",
@@ -43,21 +47,21 @@
     "express": "^4.16.4",
     "helmet": "^3.15.0",
     "morgan": "^1.9.1",
-    "nunjucks": "^3.1.4"
-  },
-  "devDependencies": {
+    "nunjucks": "^3.1.4",
     "autoprefixer": "^9.3.1",
     "browserify": "^16.2.3",
     "chai": "^4.2.0",
     "chokidar-cli": "^1.2.1",
     "copyfiles": "^2.1.0",
     "mkdirp": "^0.5.1",
-    "mocha": "^5.2.0",
-    "node-sass-chokidar": "^1.3.4",
-    "nodemon": "^1.18.6",
     "npm-run-all": "^4.1.5",
     "postcss-cli": "^6.0.1",
     "rimraf": "^2.6.2",
-    "uglify-js": "^3.4.9"
+    "uglify-js": "^3.4.9",
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0",
+    "node-sass-chokidar": "^1.3.4",
+    "nodemon": "^1.18.6",
   }
 }

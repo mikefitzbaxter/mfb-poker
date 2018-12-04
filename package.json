@@ -16,8 +16,8 @@
     "build:sass": "node-sass src/scss -o dist/css",
         "postbuild:sass": "postcss dist/css/*.css --use autoprefixer -d dist/css",
     "build:js"  : "npm-run-all -p js:*",
-    "build:img" : "copyfiles -u 1 src/img/* dist",
-    "build:font": "copyfiles -u 1 src/font/* dist",
+    "build:img" : "copyfiles -u 1 src/img/**/* dist",
+    "build:font": "copyfiles -u 1 src/font/**/* dist",
     "build:src" : "copyfiles -u 1 src/* dist",
     
     "watch:sass": "chokidar 'src/scss/**/*' -c 'npm run build:sass'",

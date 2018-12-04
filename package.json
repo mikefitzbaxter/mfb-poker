@@ -11,7 +11,7 @@
     
     "js:main" : "browserify src/js/main.js | uglifyjs > dist/js/main.js",
     "js:app"  : "browserify src/js/app.js | uglifyjs > dist/js/app.js",
-    "js:other": "copyfiles -u 1 src/js/* dist",
+    "js:other": "copyfiles -u 1 src/js/**/* dist",
         
     "build:sass": "node-sass src/scss -o dist/css",
         "postbuild:sass": "postcss dist/css/*.css --use autoprefixer -d dist/css",

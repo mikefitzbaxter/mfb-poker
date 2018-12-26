@@ -14,6 +14,12 @@ const cookieParser = require('cookie-parser')
 const compression  = require('compression')
 
 const app = express()
+const http  = require('http')
+
+/** Create HTTP server **/
+const server = http.createServer(app)
+/** Create Socket IO instance **/
+// const io = require('socket.io')(server)
 
 // add app config settings
 app.locals.config = appConfig
@@ -69,12 +75,12 @@ app.use(function(err, req, res, next) {
 	if (err.status === 404) {
 		res.render('pages/404.html')
 	} else {
-		res.render('error')
+		res.json({message: err.message, error: err})
 	}
 });
 
 // export app to ./bin/www
 module.exports = {
-	'app': app,
-	'appConfig': appConfig
+	'server': server,
+	'name': appConfig.name
 }

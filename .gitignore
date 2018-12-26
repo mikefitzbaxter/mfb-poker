@@ -7,7 +7,6 @@ yarn.lock
 yarn-error.log
 
 # Local development
-.env
 *.env
 *.dev
 .DS_Store

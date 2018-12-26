@@ -8,33 +8,27 @@
   },
   "scripts": {
     "clean": "rimraf ./dist && mkdirp 'dist' 'dist/css' 'dist/js' 'dist/img' 'dist/font'",
-    
-    "js:main" : "browserify src/js/main.js | uglifyjs > dist/js/main.js",
-    "js:app"  : "browserify src/js/app.js | uglifyjs > dist/js/app.js",
+    "js:main": "browserify src/js/main.js | uglifyjs > dist/js/main.js",
+    "js:app": "browserify src/js/app.js | uglifyjs > dist/js/app.js",
     "js:other": "copyfiles -u 1 src/js/**/* dist",
-        
     "build:sass": "node-sass src/scss -o dist/css",
-        "postbuild:sass": "postcss dist/css/*.css --use autoprefixer -d dist/css",
-    "build:js"  : "npm-run-all -p js:*",
-    "build:img" : "copyfiles -u 1 src/img/**/* dist",
+    "postbuild:sass": "postcss dist/css/*.css --use autoprefixer -d dist/css",
+    "build:js": "npm-run-all -p js:*",
+    "build:img": "copyfiles -u 1 src/img/**/* dist",
     "build:font": "copyfiles -u 1 src/font/**/* dist",
-    "build:src" : "copyfiles -u 1 src/* dist",
-    
+    "build:src": "copyfiles -u 1 src/* dist",
     "watch:sass": "chokidar 'src/scss/**/*' -c 'npm run build:sass'",
-    "watch:js"  : "chokidar 'src/js/**/*' -c 'npm run build:js'",
-    "watch:img" : "chokidar 'src/img/**/*' -c 'npm run build:img'",
+    "watch:js": "chokidar 'src/js/**/*' -c 'npm run build:js'",
+    "watch:img": "chokidar 'src/img/**/*' -c 'npm run build:img'",
     "watch:font": "chokidar 'src/font/**/*' -c 'npm run build:font'",
-    "watch:src" : "chokidar 'src/*' -c 'npm run build:src'",
-    
+    "watch:src": "chokidar 'src/*' -c 'npm run build:src'",
     "build": "npm-run-all -s clean -p build:*",
     "watch": "npm-run-all -p watch:*",
-    
     "dev-run": "nodemon --ignore dist/ --ignore src/ --ignore views ./bin/www",
-    
-    "dev"  : "npm run build && npm-run-all -p watch dev-run",
-        "predev": "npm config set scripts-prepend-node-path true",
+    "dev": "npm run build && npm-run-all -p watch dev-run",
+    "predev": "npm config set scripts-prepend-node-path true",
     "start": "node ./bin/www",
-    "test" : "mocha './test/**/*.js'",
+    "test": "mocha './test/**/*.js'",
     "postinstall": "npm run build"
   },
   "author": "Mike Fitzbaxter",
@@ -45,6 +39,7 @@
     "compression": "^1.7.3",
     "cookie-parser": "^1.4.3",
     "debug": "^4.1.0",
+    "dotenv": "^6.2.0",
     "express": "^4.16.4",
     "helmet": "^3.15.0",
     "morgan": "^1.9.1",

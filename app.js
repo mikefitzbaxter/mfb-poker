@@ -1,10 +1,6 @@
-const appConfig = {
-	name: 'mfb-nodejs-boilerplate',
-	appTitle: 'MFB NodeJS Boilerplate',
-	ga: ''
-}
 
 /* ###### INCLUDES ###### */
+const dotenv       = require('dotenv').config()
 const express      = require('express')
 const nunjucks     = require('nunjucks')
 const helmet       = require('helmet')
@@ -21,9 +17,6 @@ const server = http.createServer(app)
 /** Create Socket IO instance **/
 // const io = require('socket.io')(server)
 
-// add app config settings
-app.locals.config = appConfig
-
 /* ###### TEMPLATE CONFIG ###### */
 // configure nunjucks template engine
 // http://mozilla.github.io/nunjucks
@@ -33,8 +26,8 @@ const env = nunjucks.configure('views', {
 	watch: true
 })
 env.addGlobal('app', { 
-	title: app.locals.config.appTitle,
-	ga: app.locals.config.ga,
+	title: process.env.APP_TITLE,
+	ga: process.env.GA,
 	env: app.get('env'),
 })
 
@@ -82,5 +75,5 @@ app.use(function(err, req, res, next) {
 // export app to ./bin/www
 module.exports = {
 	'server': server,
-	'name': appConfig.name
+	'name': process.env.APP_NAME
 }

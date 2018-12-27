@@ -1,6 +1,6 @@
 
 /* ###### INCLUDES ###### */
-const dotenv       = require('dotenv').config()
+const dotenv	   = require('dotenv').config()
 const express      = require('express')
 const nunjucks     = require('nunjucks')
 const helmet       = require('helmet')
@@ -9,7 +9,7 @@ const bodyParser   = require('body-parser')
 const cookieParser = require('cookie-parser')
 const compression  = require('compression')
 
-const app = express()
+const app 	= express()
 const http  = require('http')
 
 /** Create HTTP server **/
@@ -75,5 +75,5 @@ app.use(function(err, req, res, next) {
 // export app to ./bin/www
 module.exports = {
 	'server': server,
-	'name': process.env.APP_NAME
+	'name'  : process.env.APP_NAME
 }

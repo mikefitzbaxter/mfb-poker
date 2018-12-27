@@ -1,10 +1,32 @@
 #mfb-nodejs-boilerplate
 
-###Clone
+##Clone
 Clone this repo to your own project
 
-###Configure
-inside `app.js` configure your own app settings (name, title, GA-Account)
+##Configure
+
+**Duplicate `/.env-template` and save as `/.env`**
+###OR
+**Create a fresh `/.env` file with the following settings**
+```
+# environment variables
+
+# App settings
+APP_NAME=   "mfb-nodejs-boilerplate"
+APP_TITLE=  "MFB Boilierplate"
+APP_SECRET= ""
+
+# Google analytics account - if using Google Analytics
+GA= ""
+
+# Auth0 settings - if using AUTH0
+AUTH0_CLIENT=   ""
+AUTH0_SECRET=   ""
+AUTH0_CALLBACK= ""
+```
+* insert app configuration settings within .env file. By defualt it will not be tracked within git
+* create a random APP_SECRET value [from here perhaps?](http://md5.my-addr.com/online_random_md5_hash_generator-and-md5_random_hash.php?)
+* save the .env file
 
 ###Setup
 `$ npm install`

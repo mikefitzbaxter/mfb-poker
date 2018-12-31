@@ -1,0 +1,17 @@
+{% extends '../partials/app.njk' %}
+
+{% set page = { title: title } %}
+
+{% block pageCss %}{% endblock pageCss %}
+
+{% block page %}
+
+	<h1>Hello {{ user.nickname }}!</h1>
+	<p>
+		This is the content of <code>req.user</code>
+	</p>
+	<pre>{{ userProfile }}</pre>
+
+{% endblock page %}
+
+{% block pageJS %}{% endblock pageJS %}

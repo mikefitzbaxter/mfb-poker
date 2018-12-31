@@ -5,7 +5,7 @@
  // get a user profile
  router.get('/user', secured(), (req, res, next) => {
  	const { _raw, _json, ...userProfile } = req.user
- 	res.render('user', {
+ 	res.render('pages/user.njk', {
  		userProfile: JSON.stringify(userProfile, null, 2),
  		title: 'Profile page'
  	})

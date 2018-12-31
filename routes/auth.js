@@ -27,7 +27,7 @@ module.exports = (appScheme) => {
 	})
 
 	// Perform session logout and redirect to homepage
-	router.get('logout', (req, res) => {
+	router.get('/logout', (req, res) => {
 		req.logout()
 		
 		// https://auth0.com/docs/logout
@@ -36,9 +36,6 @@ module.exports = (appScheme) => {
 		res.redirect(logoutURL + returnURL)
 	})
 	
+	// export the router
 	return router
 }
-
-
-// export the router
-module.exports = router

@@ -78,12 +78,19 @@ if (process.env.AUTH0_CLIENT) {
 
 	app.use(passport.initialize())
 	app.use(passport.session())
+	passport.serializeUser((user, done) => {
+		done(null, user);
+	})
+	passport.deserializeUser((user, done) => {
+		done(null, user);
+	})
 
 	const userInViews = require('./middleware/userInViews')
 	const secured = require('./middleware/secured')
 	const auth = require('./routes/auth')(appScheme)
 	const user = require('./routes/users')
 
+	app.use(userInViews()) // assign the user object to res.locals.user
 	app.use('/', auth) // assign routes for /login, /logout, and /callback
 	app.use('/', user) // assign routes for /user
 }

@@ -1,0 +1,8 @@
+// middleware to enforce only logged in users accessing requested URL
+module.exports = () => {
+	return function secured (req, res, next) {
+		if (req.user) { return next() }
+		req.session.returnTo = req.originalUrl
+		res.redirect('/login')
+	}
+}

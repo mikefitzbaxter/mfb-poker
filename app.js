@@ -8,6 +8,7 @@ const logger       = require('morgan')
 const bodyParser   = require('body-parser')
 const cookieParser = require('cookie-parser')
 const compression  = require('compression')
+const session	   = require('express-session')
 
 const app 	= express()
 const http  = require('http')
@@ -31,20 +32,66 @@ env.addGlobal('app', {
 	env: app.get('env'),
 })
 
+/* ###### SESSION CONFIG ###### */
+const sess = {
+	secret: process.env.APP_SECRET, // configured in .env
+	cookie: {},
+	resave: false,
+	saveUninitiated: true
+}
+if (app.get('env') === 'production') {
+	sess.cookie.secure = true // serve secure cookies, requires https
+}
+
 /* ###### MIDDLEWARE ###### */
 app.use(helmet()) // protect app by setting various http headers
 app.use(logger('dev')) // morgan logger for http
 app.use(bodyParser.json()) // parse json body
 app.use(bodyParser.urlencoded({ extended: false })) //urlencode parsed body
-app.use(cookieParser()); // parse cookies
+app.use(session(sess)) // use sessions middleware
+app.use(cookieParser()) // parse cookies
 app.use(compression()) // gzip compression all routes
-
 app.use(express.static(__dirname + '/dist')) // static files middleware
+
+/* ###### PASSPORT & AUTH CONFIG ###### */
+// only enable if Auth0 Config is available
+if (process.env.AUTH0_CLIENT) {
+	const passport 	   = require('passport')
+	const Auth0Strategy= require('passport-auth0')
+
+	const appScheme = (app.get('env') === 'production') ? 
+		'http://' + process.env.APP_NAME + '.herokuapp.com/' :
+		'http://localhost:3000/'
+
+	const strategy = new Auth0Strategy({
+		domain: process.env.AUTH0_DOMAIN,
+		clientID: process.env.AUTH0_CLIENT,
+		clientSecret: process.env.AUTH0_SECRET,
+		callbackURL: appScheme + process.env.AUTH0_CALLBACK
+	}, function(accessToken, refreshToken, extraParams, profile, done) {
+		// accessToken is the token to call Auth0 API (not needed in the most cases)
+		// extraParams.id_token has the JSON Web Token
+		// profile has all the information from the user
+		return done(null, profile)
+	})
+	passport.use(strategy)
+
+	app.use(passport.initialize())
+	app.use(passport.session())
+
+	const userInViews = require('./middleware/userInViews')
+	const secured = require('./middleware/secured')
+	const auth = require('./routes/auth')(appScheme)
+	const user = require('./routes/users')
+
+	app.use('/', auth) // assign routes for /login, /logout, and /callback
+	app.use('/', user) // assign routes for /user
+}
 
 
 /* ###### ROUTING ###### */
-const index = require('./routes/index')
 const api = require('./routes/api')
+const index = require('./routes/index')
 
 // site url sections
 app.use('/', index)

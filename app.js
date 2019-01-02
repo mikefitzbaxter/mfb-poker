@@ -60,7 +60,7 @@ if (process.env.AUTH0_CLIENT) {
 	const Auth0Strategy= require('passport-auth0')
 
 	const appScheme = (app.get('env') === 'production') ? 
-		'http://' + process.env.APP_NAME + '.herokuapp.com/' :
+		'http://' + process.env.APP_URL :
 		'http://localhost:3000/'
 
 	const strategy = new Auth0Strategy({

@@ -42,9 +42,11 @@ AUTH0_CALLBACK= ""
 * save the .env file
 
 ###Setup
-`$ yarn install`
+`$ nvm use` - use the correct node version for installation and running
 
-`$ yarn dev`
+`$ yarn install` - install dependencies and build
+
+`$ yarn dev` - run local instance (http://localhost:3000/)
 
 ###Reference materials
 * [sass-build-guide](https://github.com/hellobrian/sass-recipes/tree/master/node-sass) - a great blog post

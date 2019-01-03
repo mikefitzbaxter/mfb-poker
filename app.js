@@ -61,7 +61,7 @@ if (process.env.AUTH0_CLIENT) {
 
 	const appScheme = (app.get('env') === 'production') ? 
 		'http://' + process.env.APP_URL :
-		'http://localhost:3000/'
+		'http://localhost:3000'
 
 	const strategy = new Auth0Strategy({
 		domain: process.env.AUTH0_DOMAIN,

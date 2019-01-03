@@ -31,9 +31,11 @@ module.exports = (appScheme) => {
 		req.logout()
 		
 		// https://auth0.com/docs/logout
-		let returnURL = encodeURIComponent(appScheme) // will redirect to index homepage
-		let logoutURL = 'https://' + process.env.AUTH0_DOMAIN + '/v2/logout?returnTo='
-		res.redirect(logoutURL + returnURL)
+		let logoutURL = 'https://' + process.env.AUTH0_DOMAIN + '/v2/logout'
+		let returnURL = 'returnTo=' + encodeURIComponent(appScheme) // will redirect to index homepage
+		let clientID  = '&client_id=' + process.env.AUTH0_CLIENT
+		let url = logoutURL + '?' + returnURL + '&' + clientID
+		res.redirect(url)
 	})
 	
 	// export the router

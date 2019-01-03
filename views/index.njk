@@ -1,0 +1,20 @@
+{% extends 'app.njk' %}
+
+<!-- Page title (displayed in titlebar) -->
+{% set page = {title: 'Home'} %}
+
+<!-- Page Meta tags -->
+{% block pageMeta %}{% endblock pageMeta %}
+
+<!-- Page CSS files -->
+{% block pageCSS %}{% endblock pageCSS %}
+
+<!-- Page HTML content -->
+{% block page %}
+
+	<h1>Hello {{subject}}!</h1>
+
+{% endblock page %}
+
+<!-- Page JS files -->
+{% block pageJS %}{% endblock pageJS %}

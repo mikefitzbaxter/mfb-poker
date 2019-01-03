@@ -120,7 +120,7 @@ app.use(function(err, req, res, next) {
 	res.status(err.status || 500)
 
 	if (err.status === 404) {
-		res.render('pages/404.html')
+		res.render('404.html')
 	} else {
 		res.json({message: err.message, error: err})
 	}

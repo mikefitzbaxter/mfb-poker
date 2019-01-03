@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<title>{{page.title}} - {{app.title}}</title>
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+	<!-- link rel="manifest" href="site.webmanifest" -->
+	<!-- link rel="apple-touch-icon" href="icon.png" -->
+
+	<!-- App Meta tags -->
+	{% block appMeta %}{% endblock appMeta %}
+
+	<!-- App CSS files -->
+	{% block appCSS %}{% endblock appCSS %}
+</head>
+<body>
+	<!--[if lte IE 9]>
+		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+	<![endif]-->
+
+	<!-- App -->
+	{% block app %}{% endblock app %}
+
+	<!-- Javascript -->
+	<script src="/js/main.js"></script>
+
+	<!-- App JS Files -->
+	{% block appJS %}{% endblock appJS %}
+
+	<!-- Analytics -->
+	{% if app.env === 'production' and app.ga !== '' %}
+		<!-- Google Analytics -->
+		<script>
+			window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+			ga('create', '{{app.ga}}', 'auto'); ga('send', 'pageview')
+		</script>
+		<script src="https://www.google-analytics.com/analytics.js" async defer></script>
+	{% endif %}
+</body>
+</html>

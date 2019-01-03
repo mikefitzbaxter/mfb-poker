@@ -3,7 +3,7 @@ const router = express.Router()
 
 // Index
 router.get('/', function(req, res, next) {
-	res.render('pages/index.njk', {
+	res.render('index.njk', {
 		subject: 'world'
 	})
 })

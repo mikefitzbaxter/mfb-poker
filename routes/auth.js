@@ -11,7 +11,7 @@ module.exports = (appScheme) => {
 		res.redirect('/')
 	})
 
-	const callbackURL = '/' + process.env.AUTH0_CALLBACK
+	const callbackURL = process.env.AUTH0_CALLBACK
 	// Perform the final stage of authentication and redirect to previously requested URL or '/user'
 	router.get(callbackURL, (req, res, next) => {
 		passport.authenticate('auth0', function(err, user, info) {

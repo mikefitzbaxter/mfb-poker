@@ -63,7 +63,7 @@ if (process.env.AUTH0_CLIENT) {
 /* ###### ROUTING ###### */
 const api = require('./routes/api')
 const index = require('./routes/index')	
-const user = require('../routes/users') // add user route for /user
+const user = require('./routes/users') // add user route for /user
 
 // site url sections
 app.use('/api', api)

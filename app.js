@@ -37,7 +37,7 @@ const sess = {
 	secret: process.env.APP_SECRET, // configured in .env
 	cookie: {},
 	resave: false,
-	saveUninitiated: true
+	saveUninitialized: false
 }
 if (app.get('env') === 'production') {
 	// sess.cookie.secure = true // serve secure cookies, requires https

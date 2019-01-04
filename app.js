@@ -56,43 +56,8 @@ app.use(express.static(__dirname + '/dist')) // static files middleware
 /* ###### PASSPORT & AUTH CONFIG ###### */
 // only enable if Auth0 Config is available
 if (process.env.AUTH0_CLIENT) {
-	const passport 	   = require('passport')
-	const Auth0Strategy= require('passport-auth0')
-
-	const appScheme = (app.get('env') === 'production') ? 
-		'http://' + process.env.APP_URL :
-		'http://localhost:3000'
-
-	const strategy = new Auth0Strategy({
-		domain: process.env.AUTH0_DOMAIN,
-		clientID: process.env.AUTH0_CLIENT,
-		clientSecret: process.env.AUTH0_SECRET,
-		callbackURL: appScheme + process.env.AUTH0_CALLBACK
-	}, function(accessToken, refreshToken, extraParams, profile, done) {
-		// accessToken is the token to call Auth0 API (not needed in the most cases)
-		// extraParams.id_token has the JSON Web Token
-		// profile has all the information from the user
-		return done(null, profile)
-	})
-	passport.use(strategy)
-
-	app.use(passport.initialize())
-	app.use(passport.session())
-	passport.serializeUser((user, done) => {
-		done(null, user);
-	})
-	passport.deserializeUser((user, done) => {
-		done(null, user);
-	})
-
-	const userInViews = require('./middleware/userInViews')
-	const secured = require('./middleware/secured')
-	const auth = require('./routes/auth')(appScheme)
-	const user = require('./routes/users')
-
-	app.use(userInViews()) // assign the user object to res.locals.user
-	app.use('/', auth) // assign routes for /login, /logout, and /callback
-	app.use('/', user) // assign routes for /user
+	const auth0 = require('./middleware/auth0')
+	auth0(app)
 }
 
 

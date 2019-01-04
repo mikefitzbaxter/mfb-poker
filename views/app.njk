@@ -27,12 +27,25 @@
 <!-- App-specific content -->
 {% block app %}
 	<!-- #header -->
-	<header class="navbar navbar-expand navbar-light bd-navbar">
-		{{ app.title }}
+	<header class="navbar navbar-expand navbar-dark bg-dark justify-content-between">
+		<a href="/" class="navbar-brand">{{ app.title }}</a>
+		{% if auth %}
+			<div class="auth-widget navbar-nav nav-inline">
+				{% if user %}
+					<a href="/user" class="nav-link">
+						{{ user.nickname }}
+						<img src="{{ user.picture }}" alt="{{ user.nickname }}" class="img-fluid rounded-circle"/>
+					</a>
+					<a href="/logout" id="btn-logout" class="btn btn-sm btn-outline-secondary">Log out</a>
+				{% else %}
+					<a href="/login" id="btn-login" class="btn btn-sm btn-primary">Log in</a>
+				{% endif %}
+			</div>
+		{% endif %}
 	</header>
 	
 	<!-- Page -->
-	<section id="page">
+	<section id="page" class="container">
 		{% block page %}{% endblock page %}
 	</section><!-- /#page -->
 {% endblock app %}

@@ -21,7 +21,7 @@ module.exports = (appScheme) => {
 				if (err) { return next(err) }
 				let returnTo = req.session.returnTo
 				delete req.session.returnTo
-				res.redirect(returnTo || '/user')
+				res.redirect(returnTo || '/')
 			})
 		})(req, res, next)
 	})

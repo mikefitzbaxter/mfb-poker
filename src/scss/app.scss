@@ -1,10 +1,26 @@
-// import the global reset
-@import "partials/reset.scss";
 
 // app styles here
 body {
 	background: #efefef;
-	font-size: 1.6rem;
 	font-family: sans-serif;
 	color: #222;
+}
+
+header {
+	background: #ddd;
+	margin-bottom: 1rem;
+	min-height: 4rem;
+	box-shadow: 0 0.5rem 1rem rgba(0,0,0,.05), inset 0 -1px 0 rgba(0,0,0,.1);
+}
+
+.auth-widget {
+	color: inherit;
+	align-items: center;
+	.nav-link {
+		color: inherit;
+	}
+	img {
+		width: 40px;
+		margin-left: 0.2rem;
+	}
 }

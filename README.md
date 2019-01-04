@@ -21,16 +21,17 @@ Clone this repo to your own project
 # environment variables
 
 # App settings
+APP_URL=    "mfb-nodejs-boilerplate.herokuapp.com"
 APP_NAME=   "mfb-nodejs-boilerplate"
 APP_TITLE=  "MFB Boilerplate"
-APP_URL= 	"mfb-nodejs-boilerplate.herokuapp.com"
 # http://md5.my-addr.com/online_random_md5_hash_generator-and-md5_random_hash.php
 APP_SECRET= ""
 
 # Google analytics account - if using Google Analytics
 GA= ""
 
-# Auth0 settings - if using AUTH0
+# Auth0 settings (if using AUTH0 for authentication)
+# NB: callback does not include the domain
 AUTH0_DOMAIN=   ""
 AUTH0_CLIENT=   ""
 AUTH0_SECRET=   ""

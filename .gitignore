@@ -2,9 +2,10 @@
 node_modules
 npm-debug.log
 
-# yarn build artifacts
+# yarn / npm build artifacts
 yarn.lock
 yarn-error.log
+package.lock
 
 # Local development
 *.env

@@ -24,8 +24,8 @@ Clone this repo to your own project
 APP_URL=    "mfb-nodejs-boilerplate.herokuapp.com"
 APP_NAME=   "mfb-nodejs-boilerplate"
 APP_TITLE=  "MFB Boilerplate"
-# http://md5.my-addr.com/online_random_md5_hash_generator-and-md5_random_hash.php
 APP_SECRET= ""
+# http://md5.my-addr.com/online_random_md5_hash_generator-and-md5_random_hash.php
 
 # Google analytics account - if using Google Analytics
 GA= ""

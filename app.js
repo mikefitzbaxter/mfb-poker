@@ -39,6 +39,7 @@ const sess = {
 	resave: false,
 	saveUninitialized: false
 }
+
 if (app.get('env') === 'production') {
 	// sess.cookie.secure = true // serve secure cookies, requires https
 }
@@ -59,17 +60,15 @@ if (process.env.AUTH0_CLIENT) {
 	require('./middleware/auth0')(app)
 }
 
-
 /* ###### ROUTING ###### */
-const api = require('./routes/api')
-const index = require('./routes/index')	
-const user = require('./routes/users') // add user route for /user
+const api = require('./routes/api') // handle calls to /api
+const user = require('./routes/users') // handle calls to /user
+const index = require('./routes/index')	// handle all other routes
 
 // site url sections
 app.use('/api', api)
 app.use('/user', user) // assign routes for /user
 app.use('/', index)
-
 
 // Catch 404 and forward to error handler
 app.use(function(req, res, next) {

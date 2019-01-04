@@ -5,7 +5,7 @@ module.exports = (app) => {
 
 	const appScheme = (app.get('env') === 'production') ? 
 		`http://${process.env.APP_URL}` :
-		'http://localhost:3000'
+		`http://localhost:3000`
 
 	const strategy = new Auth0Strategy({
 		domain: process.env.AUTH0_DOMAIN,
@@ -65,10 +65,10 @@ module.exports = (app) => {
 		req.logout()
 		
 		// https://auth0.com/docs/logout
-		let logoutURL = 'https://' + process.env.AUTH0_DOMAIN + '/v2/logout'
-		let returnURL = 'returnTo=' + encodeURIComponent(appScheme) // will redirect to index homepage
-		let clientID  = '&client_id=' + process.env.AUTH0_CLIENT
-		let url = logoutURL + '?' + returnURL + '&' + clientID
+		let logoutURL = `https://${process.env.AUTH0_DOMAIN}/v2/logout`
+		let returnURL = `returnTo=${encodeURIComponent(appScheme)}` // will redirect to index homepage
+		let clientID  = `&client_id=${process.env.AUTH0_CLIENT}`
+		let url = `${logoutURL}?${returnURL}&${clientID}`
 		res.redirect(url)
 	})
 }

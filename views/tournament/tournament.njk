@@ -1,0 +1,51 @@
+{% extends '../app.njk' %}
+
+{% set page = { title: title } %}
+
+{% block pageCss %}{% endblock pageCss %}
+
+{% block page %}
+	<div id="lobby">
+		<h1><span class="capitalize">{{ tournament.options.type }}</span> Tournament &ndash; {{ tournament.id }}</h1>
+		<div class="row border-top border-bottom my-2 py-2 bg-dark text-light">
+			<div class="col-6 col-md-3 capitalize">
+				Format: <strong>{{ tournament.options.format }}</strong>
+			</div>
+			<div class="col-6 col-md-3 capitalize">
+				Stack: <strong>{{ tournament.options.stack }}</strong>
+			</div>
+			<div class="col-6 col-md-3 capitalize">
+				Players: <strong>{{ tournament.options.maxPlayers }}</strong>
+			</div>
+			<div class="col-6 col-md-3 capitalize">
+				Created: <strong>{{ tournament.createdAt|date2 }}</strong>
+			</div>
+		</div><!-- /.row -->
+		<div class="row mt-3 py-2 align-items-center">
+			<div class="col d-flex justify-content-between">
+				<h2 class="">Players</h2>
+				<div class="">
+					<a href="#" class="btn btn-sm btn-outline-primary">+ Join tournament</a>
+				</div>
+			</div>
+		</div><!-- /.row -->
+		<div class="row">
+			<table class="table">
+				<thead>
+					<th>Player</th>
+					<th>Reputation</th>
+				</thead>
+				<tbody>
+					<td>Mike</td>
+					<td>{{ tournament.createdBy.displayName }}</td>
+				</tbody>
+			</table>
+		</div><!-- /.row -->
+	</div><!-- /#lobby -->
+	<div id="table">
+		<h1>Game Table</h1>
+	</div><!-- /#table -->
+	<div id=""
+{% endblock page %}
+
+{% block pageJS %}{% endblock pageJS %}

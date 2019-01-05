@@ -31,6 +31,15 @@ env.addGlobal('app', {
 	ga: process.env.GA,
 	env: app.get('env'),
 })
+require('./middleware/customDateFormat')
+env.addFilter('date1', function(milliseconds) {
+	let date = new Date(milliseconds)
+	return date.customFormat('#MMM# #D# #YYYY#, #hhhh#:#mm#:#ss#')
+})
+env.addFilter('date2', function(milliseconds) {
+	let date = new Date(milliseconds)
+	return date.customFormat('#DD#/#MM#/#YYYY# #hhhh#:#mm#:#ss#')
+})
 
 /* ###### SESSION CONFIG ###### */
 const sess = {
@@ -63,11 +72,13 @@ if (process.env.AUTH0_CLIENT) {
 /* ###### ROUTING ###### */
 const api = require('./routes/api') // handle calls to /api
 const user = require('./routes/users') // handle calls to /user
+const tournament = require('./routes/tournament') // handle calls to /tournament
 const index = require('./routes/index')	// handle all other routes
 
 // site url sections
 app.use('/api', api)
 app.use('/user', user) // assign routes for /user
+app.use('/tournament', tournament) // assign routes for /tournament
 app.use('/', index)
 
 // Catch 404 and forward to error handler

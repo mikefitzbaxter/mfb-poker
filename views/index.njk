@@ -13,8 +13,42 @@
 {% block page %}
 
 	<h1>Welcome to mfb-poker</h1>
+	<h2 class="float-md-left">Tournaments</h2>
+	<div class="float-md-right mb-2">
+		<a href="/tournament/create" class="btn btn-outline-primary">+ Create tournament</a>
+	</div>
+	<table id="tournament-table" class="table table-hover">
+		<thead>
+			<tr>
+				<th>Tournament ID</th>
+				<th>Game type</th>
+				<th>Format</th>
+				<th>Starting stack</th>
+				<th>Players</th>
+				<th>Status</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for id, tournament in tournaments %}
+				<tr id="{{ id }}">
+					<td>{{ id }}</td>
+					<td class="capitalize">{{ tournament.options.type }}</td>
+					<td class="capitalize">{{ tournament.options.format }}</td>
+					<td class="capitalize">{{ tournament.options.stack }}</td>
+					<td class="capitalize">{{ tournament.options.maxPlayers }}</td>
+					<td class="capitalize">{{ tournament.status }}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
 
 {% endblock page %}
 
 <!-- Page JS files -->
-{% block pageJS %}{% endblock pageJS %}
+{% block pageJS %}
+	<script type="text/javascript">
+		$('#tournament-table tr').on('click', function(e) {
+			window.location.replace('/tournament/' + $( this ).attr('id'));
+		});	
+	</script>
+{% endblock pageJS %}

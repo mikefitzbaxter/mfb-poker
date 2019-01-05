@@ -2,7 +2,8 @@
 // app styles here
 body {
 	background: #efefef;
-	font-family: sans-serif;
+	font-family: "Open Sans", sans-serif;
+	font-weight: 400;
 	color: #222;
 }
 
@@ -18,9 +19,35 @@ header {
 	align-items: center;
 	.nav-link {
 		color: inherit;
+		line-height: 2rem;
 	}
 	img {
-		width: 40px;
+		width: 2rem;
 		margin-left: 0.2rem;
+	}
+}
+strong {
+	font-weight: 700;
+}
+
+h1, h2, h3, h4 {
+	font-family: 'Raleway', 'Open Sans', 'Roboto', sans-serif;
+}
+
+h1, h2 { font-weight: 200; }
+h3, h4 { font-weight: 300; }
+
+h5, h6 {
+	font-family: 'Open Sans', 'Roboto', sans-serif;
+	font-weight: 700;
+}
+
+.capitalize {
+	text-transform: capitalize;
+}
+
+#tournament-table {
+	tbody tr {
+		cursor: pointer;
 	}
 }

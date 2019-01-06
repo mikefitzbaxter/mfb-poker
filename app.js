@@ -2,7 +2,6 @@
 /* ###### INCLUDES ###### */
 const dotenv	   = require('dotenv').config()
 const express      = require('express')
-const nunjucks     = require('nunjucks')
 const helmet       = require('helmet')
 const logger       = require('morgan')
 const bodyParser   = require('body-parser')
@@ -11,6 +10,7 @@ const compression  = require('compression')
 const session	   = require('express-session')
 
 const app 	= express()
+
 const http  = require('http')
 
 /** Create HTTP server **/
@@ -21,24 +21,13 @@ const server = http.createServer(app)
 /* ###### TEMPLATE CONFIG ###### */
 // configure nunjucks template engine
 // http://mozilla.github.io/nunjucks
-const env = nunjucks.configure('views', {
-	autoescape: true,
-	express: app,
-	watch: true
-})
-env.addGlobal('app', { 
+const templateEngine = require('./middleware/nunjucks')(app)
+
+// add some global variables to the template environment
+templateEngine.addGlobal('app', { 
 	title: process.env.APP_TITLE,
 	ga: process.env.GA,
 	env: app.get('env'),
-})
-require('./middleware/customDateFormat')
-env.addFilter('date1', function(milliseconds) {
-	let date = new Date(milliseconds)
-	return date.customFormat('#MMM# #D# #YYYY#, #hhhh#:#mm#:#ss#')
-})
-env.addFilter('date2', function(milliseconds) {
-	let date = new Date(milliseconds)
-	return date.customFormat('#DD#/#MM#/#YYYY# #hhhh#:#mm#:#ss#')
 })
 
 /* ###### SESSION CONFIG ###### */
@@ -49,11 +38,19 @@ const sess = {
 	saveUninitialized: false
 }
 
+/* ###### MIDDLEWARE ###### */
 if (app.get('env') === 'production') {
-	// sess.cookie.secure = true // serve secure cookies, requires https
+	// set all requests to use https instead of http
+	app.use((req, res, next) => {
+		if (req.header('x-forwarded-proto') !== 'https') {
+			res.redirect(`https://${req.header('host')}${req.url}`)
+		} else {
+			next()
+		}
+	})
+	sess.cookie.secure = true // serve secure cookies, requires https
 }
 
-/* ###### MIDDLEWARE ###### */
 app.use(helmet()) // protect app by setting various http headers
 app.use(logger('dev')) // morgan logger for http
 app.use(bodyParser.json()) // parse json body
@@ -96,7 +93,9 @@ app.use(function(err, req, res, next) {
 	res.status(err.status || 500)
 
 	if (err.status === 404) {
-		res.render('404.html')
+		res.render('404.njk', {
+			err: err
+		})
 	} else {
 		res.json({message: err.message, error: err})
 	}

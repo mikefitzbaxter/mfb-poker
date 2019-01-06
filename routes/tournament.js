@@ -18,7 +18,9 @@ router.get('/:id', secured(), (req, res, next) => {
 			tournament: tournament
 		})
 	} else {
-		throw new Error('incorrect tournament id')
+		let err = new Error('Incorrect Tournament ID')
+		err.status = 404
+		next(err)
 	}
 })
 

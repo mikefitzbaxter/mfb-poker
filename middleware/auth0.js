@@ -4,7 +4,7 @@ const Auth0Strategy= require('passport-auth0')
 module.exports = (app) => {
 
 	const appScheme = (app.get('env') === 'production') ? 
-		`http://${process.env.APP_URL}` :
+		`https://${process.env.APP_URL}` :
 		`http://localhost:3000`
 
 	const strategy = new Auth0Strategy({

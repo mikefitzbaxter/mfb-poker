@@ -52,6 +52,9 @@ if (process.env.AUTH0_CLIENT) {
 		resave: false,
 		saveUninitialized: false
 	}
+	if (app.get('env') === 'production') {
+		sess.cookie.secure = true; // serve secure cookies, requires https
+	}
 	// use sessions middleware
 	app.use(session(sess))
 	/* ###### AUTH0 MIDDLEWARE ###### */
@@ -59,9 +62,6 @@ if (process.env.AUTH0_CLIENT) {
 	app.use('/user', require('./routes/users')) // assign routes for /user
 }
 
-if (app.get('env') === 'production') {
-	sess.cookie.secure = true; // serve secure cookies, requires https
-}
 
 /* ###### ROUTING ###### */
 const api = require('./routes/api') // handle calls to /api

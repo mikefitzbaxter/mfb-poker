@@ -50,10 +50,11 @@ if (process.env.AUTH0_CLIENT) {
 		secret: process.env.APP_SECRET, // configured in .env
 		cookie: {},
 		resave: false,
-		saveUninitialized: false
+		saveUninitialized: false,
+		proxy: true
 	}
 	if (app.get('env') === 'production') {
-		// sess.cookie.secure = true; // serve secure cookies, requires https
+		sess.cookie.secure = true; // serve secure cookies, requires https
 	}
 	// use sessions middleware
 	app.use(session(sess))

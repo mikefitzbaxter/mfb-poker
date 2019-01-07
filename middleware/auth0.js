@@ -25,10 +25,10 @@ module.exports = (app) => {
 	app.use(passport.session())
 	
 	passport.serializeUser((user, done) => {
-		done(null, user);
+		done(null, user)
 	})
 	passport.deserializeUser((user, done) => {
-		done(null, user);
+		done(null, user)
 	})
 
 	// add routes for /login /callback and /logout
@@ -50,6 +50,7 @@ module.exports = (app) => {
 	app.get(process.env.AUTH0_CALLBACK, (req, res, next) => {
 		passport.authenticate('auth0', function(err, user, info) {
 			if (err) { return next(err) }
+			console.log(`user:${user}`)
 			if (!user) { return res.redirect('/login') }
 			req.logIn(user, (err) => {
 				if (err) { return next(err) }

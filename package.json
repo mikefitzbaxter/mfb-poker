@@ -10,7 +10,7 @@
     "clean": "rimraf dist && mkdirp dist dist/css dist/js dist/img dist/font",
     "js:main": "browserify src/js/main.js | uglifyjs > dist/js/main.js",
     "js:app": "browserify src/js/app.js | uglifyjs > dist/js/app.js",
-    "js:other": "copyfiles -e **/_*.js -u 1 ./src/js/**/* dist",
+    "js:other": "copyfiles -e **/*_*.js -u 1 ./src/js/**/* dist",
     "build:sass": "node-sass src/scss -o dist/css",
     "postbuild:sass": "postcss dist/css/*.css --use autoprefixer -d dist/css",
     "build:js": "npm-run-all -s js:other -p js:main js:app",

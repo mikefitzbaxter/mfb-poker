@@ -8,8 +8,17 @@
   },
   "nodemonConfig": {
     "ext": "js,json,html",
-    "ignore": ["./dist/", "./src/", "./views/"],
-    "watch": [".env", "./**/*.js", "./**/*.json", "./**/*.html"],
+    "ignore": [
+      "./dist/",
+      "./src/",
+      "./views/"
+    ],
+    "watch": [
+      ".env",
+      "./**/*.js",
+      "./**/*.json",
+      "./**/*.html"
+    ],
     "delay": "500"
   },
   "scripts": {
@@ -23,19 +32,19 @@
     "build:img": "copyfiles -u 1 \"src/img/**/*\" dist",
     "build:font": "copyfiles -u 1 \"src/font/**/*\" dist",
     "build:src": "copyfiles -u 1 \"src/*\" dist",
-    "watch:sass": "chokidar \"src/scss/**/*\" -c yarn run build:sass",
-    "watch:js": "chokidar \"src/js/**/*\" -c yarn run build:js",
-    "watch:img": "chokidar \"src/img/**/*\" -c yarn run build:img",
-    "watch:font": "chokidar \"src/font/**/*\" -c yarn run build:font",
-    "watch:src": "chokidar \"src/*\" -c yarn run build:src",
+    "watch:sass": "chokidar \"src/scss/**/*\" -c npm run build:sass",
+    "watch:js": "chokidar \"src/js/**/*\" -c npm run build:js",
+    "watch:img": "chokidar \"src/img/**/*\" -c npm run build:img",
+    "watch:font": "chokidar \"src/font/**/*\" -c npm run build:font",
+    "watch:src": "chokidar \"src/*\" -c npm run build:src",
     "build": "npm-run-all -s clean -p build:*",
     "watch": "npm-run-all -p watch:*",
     "dev-run": "nodemon ./bin/www",
-    "dev": "yarn run build && npm-run-all -p watch dev-run",
-    "predev": "yarn config set scripts-prepend-node-path true",
+    "dev": "npm run build && npm test && npm-run-all -p watch dev-run",
+    "predev": "npm config set scripts-prepend-node-path true",
     "start": "node ./bin/www",
-    "test": "mocha \"./test/**/*.js\"",
-    "postinstall": "yarn run build"
+    "test": "mocha \"./test/**/*.js\" --exit",
+    "postinstall": "npm run build && npm test"
   },
   "author": "Mike Fitzbaxter",
   "license": "ISC",
@@ -66,6 +75,7 @@
     "npm-run-all": "^4.1.5",
     "postcss-cli": "^6.0.1",
     "rimraf": "^2.6.2",
+    "supertest": "^3.4.2",
     "uglify-js": "^3.4.9"
   }
 }

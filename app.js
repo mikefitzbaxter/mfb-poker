@@ -94,5 +94,5 @@ app.use(function(err, req, res, next) {
 // export app to ./bin/www
 module.exports = {
 	'server': server,
-	'name'  : process.env.APP_NAME
+	'env'  : process.env
 }

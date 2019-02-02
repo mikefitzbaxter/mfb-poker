@@ -3,8 +3,10 @@
 /**
  * Module dependencies.
  */
-const app   = require('../app')
-const debug = require('debug')(`${app.name}:server`)
+
+const app = require('../app')
+const debug = require('debug')(`${app.env.APP_NAME}:server`)
+const http = require('http')
 
 /**
  * Get port from environment and store in Express.
@@ -79,3 +81,5 @@ function onListening() {
 		: 'port ' + addr.port
 	debug('Listening on ' + bind)
 }
+
+module.exports = server

@@ -1,7 +1,7 @@
 {
-  "name": "mfb-nodejs-boilerplate",
+  "name": "mfb-poker",
   "version": "1.0.0",
-  "description": "A light-weight boilerplate for express with some basic build and watch scripts",
+  "description": "A lightweight poker server and client that utilises Slack for sign up",
   "main": "./bin/www",
   "engines": {
     "node": "10.13.0"
